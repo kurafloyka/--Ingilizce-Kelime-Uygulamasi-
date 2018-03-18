@@ -7,20 +7,16 @@ import java.util.TreeSet;
 public class Main2 {
 
 	static TreeSet<Vocabulary2> v1;
+	static String sorgulanacakKelime, silinecekKelime;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		System.out.println("##################Ingilizce Kelime Uygulamasi###################");
+		System.out.println("################################################################");
 		v1 = new TreeSet<Vocabulary2>();
 
 		menu();
 
-		Iterator<Vocabulary2> itr = v1.iterator();
-		while (itr.hasNext()) {
-
-			System.out.println(itr.next());
-
-		}
 	}
 
 	public static void menu() {
@@ -50,20 +46,21 @@ public class Main2 {
 				break;
 
 			case 2:
-				// kelimeSorgulama();
+				kelimeSorgulama();
 				break;
 			case 3:
-				// kelimeSilme();
+				kelimeSilme();
 				break;
 
 			case 4:
-				// kelimeListeleme();
+				kelimeListeleme();
 				break;
 			case 5:
 				// kelimeGuncelleme();
 				break;
 
 			case 6:
+				System.out.println("Uygulamadan cikis yaptiniz...");
 				return;
 
 			}
@@ -106,6 +103,85 @@ public class Main2 {
 
 		kelimeAmlamlarCumleler = new Vocabulary2(kelime, t3);
 		v1.add(kelimeAmlamlarCumleler);
+
+	}
+
+	public static void kelimeListeleme() {
+
+		Iterator<Vocabulary2> itr = v1.iterator();
+
+		if (itr.hasNext() == false) {
+
+			System.out.println("Listeye eklenmis herhangi bir kelime bulunamamistir.Lutfen Kelime ekleyiniz...");
+		}
+
+		while (itr.hasNext()) {
+
+			System.out.println(itr.next());
+
+		}
+
+	}
+
+	public static void kelimeSorgulama() {
+
+		Iterator itr = v1.iterator();
+
+		if (itr.hasNext() == false) {
+			System.out.println("Listeye eklenmis herhangi bir kelime bulunamamistir.Lutfen Kelime ekleyiniz...");
+
+		} else {
+
+			System.out.println("Sorgulamak istediginiz kelimeyi giriniz...");
+			Scanner oku2 = new Scanner(System.in);
+			sorgulanacakKelime = oku2.nextLine();
+		}
+
+		while (itr.hasNext()) {
+
+			Vocabulary2 listedekiKelimeler = (Vocabulary2) itr.next();
+
+			if (sorgulanacakKelime.equals(listedekiKelimeler.getVocabulary())) {
+
+				System.out.println(listedekiKelimeler.toString());
+			}
+
+			else {
+				System.out.println("Sistemde girilen kelime bulunamadi....");
+			}
+
+		}
+
+	}
+
+	public static void kelimeSilme() {
+		Iterator itr = v1.iterator();
+
+		if (itr.hasNext() == false) {
+			System.out.println("Listeye eklenmis herhangi bir kelime bulunamamistir.Lutfen Kelime ekleyiniz...");
+
+		} else {
+
+			System.out.println("Silmek istediginiz kelimeyi giriniz...");
+			Scanner oku2 = new Scanner(System.in);
+			silinecekKelime = oku2.nextLine();
+		}
+
+		while (itr.hasNext()) {
+
+			Vocabulary2 listedekiKelimeler = (Vocabulary2) itr.next();
+
+			if (silinecekKelime.equals(listedekiKelimeler.getVocabulary())) {
+
+				itr.remove();
+				System.out.println(silinecekKelime + " kelimesi listeden silindi.....");
+			}
+
+			else {
+				System.out.println("Sistemde girilen kelime bulunamadi....");
+			}
+
+		}
 
 	}
 }
